@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="module" src="./mi-componente.js"></script>
+</head>
+<body>
+  <style>
+    article {
+      display: block;
+      border: 5px solid blue;
+      background-color: skyblue;
+      color: blue;
+      border-radius: 20px;
+      padding: 20px;
+    }
+  </style>
+  <mi-componente>
+    <section slot="side">Sidebar</section>
+    <div slot="foot">Hola desde footer</div>
+    <h1 slot="head">Mi primer componente de LitElement</h1>
+    <section slot="body">Hola desde section</section>
+  </mi-componente>
+</body>
+</html>
