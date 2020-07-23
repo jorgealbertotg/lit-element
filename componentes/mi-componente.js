@@ -17,7 +17,9 @@ export class MiComponente extends LitElement {
       nombre: { type: String , attribute: false },
       apellido: { type: String , reflect: true, attribute: 'last' },
       age: { type: Number , hasChanged(current, last) { console.log(current, last)} },
-      curp: { type: String, noAccessor: true }
+      curp: { type: String, noAccessor: true },
+      sports: { type: Array, converter: {fromAttribute: (value, type) => 'hola_mundo_from_converter', toAttribute: (value, type) => 'hola_mundo_from_converter' }, reflect: true },
+      address: { type: Object }
     };
   }
 
@@ -26,7 +28,7 @@ export class MiComponente extends LitElement {
     this.nombre = 'Tolentino';
     this.age = 1;
     this.curp = "ninfi9on";
-
+    this.sports = ['uno', 'dos'];
     // Change age with hasChanged function
     // setInterval(() => {
     //   this.age += 5;
@@ -44,6 +46,11 @@ export class MiComponente extends LitElement {
     //   this.curp = new Date().toLocaleString();
     //   this.requestUpdate('curp', oldValue);
     // } , 3000);
+
+    setInterval(() => {
+      console.log('Sports', this.sports);
+      console.log('Address', this.address);
+    } , 3000);
   }
 
   _changeAge(current, last) {
@@ -51,6 +58,7 @@ export class MiComponente extends LitElement {
   }
 
   render() {
+    // this.sports.map(sport => html`<p>${sport}</p>`)
     return html`
       <div>
         <p>${this.curp}</p>
@@ -60,6 +68,15 @@ export class MiComponente extends LitElement {
         <p>
           <slot></slot>
         </p>
+        <section>
+          ${
+            this.sports
+          }
+        </section>
+        <section>
+          <p>${this.address.street}</p>
+          <p>${this.address.number}</p>
+        </section>
       </div>
     `;
   }
