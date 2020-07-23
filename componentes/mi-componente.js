@@ -16,7 +16,8 @@ export class MiComponente extends LitElement {
     return {
       nombre: { type: String , attribute: false },
       apellido: { type: String , reflect: true, attribute: 'last' },
-      age: { type: Number , hasChanged(current, last) { console.log(current, last)} }
+      age: { type: Number , hasChanged(current, last) { console.log(current, last)} },
+      curp: { type: String, noAccessor: true }
     };
   }
 
@@ -24,12 +25,24 @@ export class MiComponente extends LitElement {
     super();
     this.nombre = 'Tolentino';
     this.age = 1;
+    this.curp = "ninfi9on";
+
+    // Change age with hasChanged function
     // setInterval(() => {
     //   this.age += 5;
     // } , 3000);
 
+    // Change apellido with reflect to attribute last
     // setInterval(() => {
     //   this.apellido = new Date().toLocaleString();
+    // } , 3000);
+
+    // Change curp without setter
+    // setInterval(() => {
+    //   console.log('Curp change', this.curp);
+    //   const oldValue = this.curp;
+    //   this.curp = new Date().toLocaleString();
+    //   this.requestUpdate('curp', oldValue);
     // } , 3000);
   }
 
@@ -40,6 +53,7 @@ export class MiComponente extends LitElement {
   render() {
     return html`
       <div>
+        <p>${this.curp}</p>
         <p>
           Hola <strong>${this.nombre} ${this.apellido}</strong>
         </p>
